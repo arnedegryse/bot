@@ -168,27 +168,52 @@ bot.on("message", async message => {
 
                 settedParent.overwritePermissions(message.author, {
 
-                    "READ_MESSAGES": true, "SEND_MESSAGES": true, 
-                    "ATTACH_FILES": true, "CONNECT": true, 
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true,
+                    "ATTACH_FILES": true, "CONNECT": true,
                     "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
 
                 });
 
                 var embedParent = new discord.RichEmbed()
-            .setTitle("Hoi, " + message.author.username.toString())
-            .setDescription("Zet hier je bericht, het staffteam zal zodadelijk naar je kijken!!");
+                    .setTitle("Hoi, " + message.author.username.toString())
+                    .setDescription("Zet hier je bericht, het staffteam zal zodadelijk naar je kijken!!");
 
-        settedParent.send(embedParent);
+                settedParent.send(embedParent);
 
 
-            })
+            }).catch(err => {
 
-        })
+                message.channel.send("Er is iets fout gelopen");
+            });
+
+        }).catch(err => {
+
+            message.channel.send("Er is iets fout gelopen");
+        });
 
     }
 
 
 });
+if (command === `${prefix}close`) {
+
+    const categoryId = "647161895127875595";
+    
+    if(message.channel.parentID == categoryId){
+
+    message.channel.delete();
+    }else{
+
+
+            message.channel.send("Gelieve dit commando in een ticket kanaal te typen");
+    
+
+    }
+
+
+
+}
+
 
 
 bot.login(process.env.token);
