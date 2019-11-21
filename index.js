@@ -202,7 +202,7 @@ if (command === `${prefix}close`) {
     if(message.channel.parentID == categoryId){
 
     message.channel.delete();
-    }else{
+    } else {
 
 
             message.channel.send("Gelieve dit commando in een ticket kanaal te typen");
