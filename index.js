@@ -158,7 +158,32 @@ bot.on("message", async message => {
             .setTitle("Hoi, " + message.author.username)
             .setFooter("Support kanaal word aangemaakt");
 
-            message.channel.send(embedCreateTicket);
+        message.channel.send(embedCreateTicket);
+
+        message.guild.createChannel(userName + "-" + userDiscriminator, "text").then((createdChan) => {
+
+            createdChan.setParent(categoryId).then((settedParent) => {
+
+                settedParent.overwritePermissions(message.guild.roles.find('name', "@everyone"), { "READ_MESSAGES": false });
+
+                settedParent.overwritePermissions(message.author, {
+
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true, 
+                    "ATTACH_FILES": true, "CONNECT": true, 
+                    "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
+
+                });
+
+                var embedParent = new discord.RichEmbed()
+            .setTitle("Hoi, " + message.author.username.toString())
+            .setDescription("Zet hier je bericht, het staffteam zal zodadelijk naar je kijken!!");
+
+        settedParent.send(embedParent);
+
+
+            })
+
+        })
 
     }
 
