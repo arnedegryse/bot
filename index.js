@@ -195,18 +195,21 @@ bot.on("message", async message => {
 
 
 });
-if (command === `${prefix}close`) {
+
+    if (command === `${prefix}close`) {
 
     const categoryId = "647161895127875595";
+
+    if (message.channel.parentID == categoryId) {
+
+        message.channel.delete();
+    }; 
     
-    if(message.channel.parentID == categoryId){
-
-    message.channel.delete();
-    } else {
+    else {
 
 
-            message.channel.send("Gelieve dit commando in een ticket kanaal te typen");
-    
+        message.channel.send("Gelieve dit commando in een ticket kanaal te typen");
+
 
     }
 
