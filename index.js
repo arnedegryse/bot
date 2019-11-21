@@ -135,7 +135,7 @@ bot.on("message", async message => {
 
         const categoryId = "647161895127875595";
 
-        var userName = message.author.userName;
+        var userName = message.author.username;
 
         var userDiscriminator = message.author.discriminator;
 
