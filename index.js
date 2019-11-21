@@ -58,7 +58,7 @@ bot.on("message", async message => {
 
         var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
 
-        if (!warnUser) return message.channel.send("gebruiker is niet");
+        if (!warnUser) return message.channel.send("gebruiker is niet gevonden");
 
         var reason = arguments.join(" ").slice(22);
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
@@ -69,7 +69,7 @@ bot.on("message", async message => {
         var warnEmbed = new discord.RichEmbed()
             .setDescription("warn")
             .setColor("#ff1100")
-            .addField("warned gebruiker", warnUser) 
+            .addField("warned gebruiker", warnUser)
             .addField("Gewarnd door", message.author)
             .addField("Reden", reason);
 
@@ -129,12 +129,38 @@ bot.on("message", async message => {
     }
 
 
-//TICKET SYSTEEM
+    //TICKET SYSTEEM
 
+    if (command === `${prefix}ticket`) {
 
+        const categoryId = "647161895127875595";
 
+        var userName = message.author.userName;
 
+        var userDiscriminator = message.author.discriminator;
 
+        var bool = false;
+
+        message.guild.channels.forEach((channel) => {
+
+            if (channel.name == userName.toLowerCase() + "-" + userDiscriminator) {
+
+                message.channel.send("Je hebt al een ticket aangemaakt");
+
+                bool = true;
+            }
+
+        });
+
+        if (bool == true) return;
+
+        var embedCreateTicket = new discord.RichEmbed()
+            .setTitle("Hoi, " + message.author.username)
+            .setFooter("Support kanaal word aangemaakt");
+
+            message.channel.send(embedCreateTicket);
+
+    }
 
 
 });
