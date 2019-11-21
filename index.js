@@ -58,7 +58,7 @@ bot.on("message", async message => {
 
         var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
 
-        if (!warnUser) return message.channel.send("gebruiker is niet gevonden");
+        if (!warnUser) return message.channel.send("gebruiker is niet ");
 
         var reason = arguments.join(" ").slice(22);
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
