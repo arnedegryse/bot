@@ -1,0 +1,142 @@
+const discord = require("discord.js");
+const botConfig = require("./botconfig.json");
+
+const fs = require("fs");
+
+const bot = new discord.Client();
+
+
+
+bot.on("ready", async () => {
+
+    console.log(`${bot.user.username} is online!`)
+
+    bot.user.setActivity("Noordbeek rp", { type: "PLAYING" });
+
+});
+
+
+bot.on("message", async message => {
+    // Als de bot het bericht stuurd word er niet op gereageerd
+    if (message.author.bot) return;
+
+    if (message.channel.type === "dm") return;
+
+    var prefix = botConfig.prefix;
+
+    var messageArrey = message.content.split(" ");
+
+    var command = messageArrey[0];
+
+    var arguments = messageArrey.slice(1);
+
+    //HALLO COMMAND
+
+
+    if (command === `${prefix}hallo`) {
+
+        return message.channel.send("hallo");
+    }
+    //dit is niet nodig
+    if (command === `${prefix}voorlopigstaathierniksbij`) {
+
+        var botEmbed = new discord.RichEmbed()
+            .setDescription("@here U kan de server weer joinen, veel plesier!!")
+            .setColor("#ff1100")
+
+
+        return message.channel.send(botEmbed);
+    }
+
+
+    //WARN COMMAND
+
+
+    if (command === `${prefix}warn`) {
+        //kick command 
+
+        var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
+
+        if (!warnUser) return message.channel.send("gebruiker is niet gevonden");
+
+        var reason = arguments.join(" ").slice(22);
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
+
+        if (!warnUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet warnen");
+
+
+        var warnEmbed = new discord.RichEmbed()
+            .setDescription("warn")
+            .setColor("#ff1100")
+            .addField("warned gebruiker", warnUser)
+            .addField("Gewarnd door", message.author)
+            .addField("Reden", reason);
+
+
+
+        //     var warnChannel = message.guild.channels.find("name", "discord-kicks");
+        // if (!warnChannel) return message.guild.send("kan kanaal niet vinden");
+
+        // message.guild.member(warnUser).warn(reason);
+
+        // warnChannel.send(warn);
+
+        return message.channel.send("Speler Suc6vol gewarned");
+
+    }
+
+
+
+
+    //dit wel xd
+
+
+    //DEZE COMMEND WORD IN ONDERHOUD GEZET!
+
+
+
+
+    //ONDERHOUD
+    //BAN COMMAND 
+
+
+    if (command === `${prefix}ban`) {
+
+        var banUser = message.guild.member(message.mentions.users.first() || message.guild.members(arguments[0]));
+
+        if (banUser) return message.channel.send("gebruiker is niet gevonden");
+
+        var reason = arguments.join(" ").slice(22);
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
+
+        if (banUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet banen");
+
+        var ban = new discord.RichEmbed()
+            .setDescription("ban")
+            .setColor("#ff1100")
+            .addField("baned gebruiker", banUser)
+            .addField("Geband door", message.author)
+            .addField("Reden", reason);
+
+        var banChannel = message.guild.channels.find("name", "discord-bans");
+        if (banChannel) return message.guild.send("kan kanaal niet vinden");
+
+        message.guild.member(banUser).ban(reason);
+
+        banChannel.send(ban);
+
+    }
+
+
+//TICKET SYSTEEM
+
+
+
+
+
+
+
+});
+
+
+bot.login(process.env.token);
