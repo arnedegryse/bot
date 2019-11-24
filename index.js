@@ -54,7 +54,7 @@ bot.on("message", async message => {
 
 
     if (command === `${prefix}warn`) {
-        //kick command 
+       
 
         var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
 
@@ -75,14 +75,14 @@ bot.on("message", async message => {
 
 
 
-        //     var warnChannel = message.guild.channels.find("name", "discord-kicks");
-        // if (!warnChannel) return message.guild.send("kan kanaal niet vinden");
+        return message.channel.send("Speler Suc6vol gewarned")
 
-        // message.guild.member(warnUser).warn(reason);
+        var warnChannel = message.guild.channels.find("name", "discord-kicks");
+        if (banChannel) return message.guild.send("kan kanaal niet vinden");
 
-        // warnChannel.send(warn);
+        message.guild.member(warnUser).warn(reason);
 
-        return message.channel.send("Speler Suc6vol gewarned");
+        warnChannel.send(warn);
 
     }
 
@@ -110,7 +110,7 @@ bot.on("message", async message => {
         var reason = arguments.join(" ").slice(22);
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
 
-        if (banUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet banen");
+        if (banUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet bannen");
 
         var ban = new discord.RichEmbed()
             .setDescription("ban")
@@ -194,13 +194,46 @@ bot.on("message", async message => {
     }
 
 
+//clear command
+
+    if (command === `${prefix}clear`) {
+
+        if (!message.member.hasPermissions("MANAGE_MESSAGES")) return message.reply("Je hebt geen toestemming");
+
+        if (!args[0]) return message.channel.send("Geef een aantal op.");
+
+        if (Number.isInteger(parseInt(args[0]))) {
+
+            var amount = parseInt(args[0]) + 1;
+
+            message.channel.bulkDelete(amount).then(() => {
+                if (args[0] == 0) {
+
+                    message.channel.send(`Ben je incapabel ofzo? Ik kan geen 0 berichten verwijderen`).then(msg => msg.delete(3000));
+
+                } else if (args[0] == 1) {
+
+                    message.channel.send(`Ik heb 1 bericht verwijderd.`).then(msg => msg.delete(3000));
+
+                } else {
+
+                    message.channel.send(`Ik heb ${args[0]} berichten verwijderd`).then(msg => msg.delete(3000));
+                }
+
+
+            });
+
+        } else {
+            return message.channel.send("Geef een aantal op.");
+        }
+
+    }
+
+
 });
 
 
 
 
-    
-
-
-
-bot.login(process.env.token);
+bot.login(botConfig.token);
+//process.env.token
