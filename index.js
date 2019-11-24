@@ -38,6 +38,10 @@ bot.on("message", async message => {
 
         return message.channel.send("hallo");
     }
+    if (command === `${prefix}serverinfo`) {
+
+        return message.channel.send("https://www.trackyserver.com/server/noordbeek-rp-409451");
+    }
     //dit is niet nodig
     if (command === `${prefix}voorlopigstaathierniksbij`) {
 
@@ -235,5 +239,4 @@ bot.on("message", async message => {
 
 
 
-bot.login(botConfig.token);
-//process.env.token
+bot.login(process.env.token);
