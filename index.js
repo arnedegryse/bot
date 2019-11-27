@@ -204,7 +204,7 @@ bot.on("message", async message => {
 
 
 
-        if (!args[0]) return message.channel.send("Geef een aantal op.");
+        if (!arguments[0]) return message.channel.send("Geef een aantal op.");
 
         if (Number.isInteger(parseInt(args[0]))) {
 
