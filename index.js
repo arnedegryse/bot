@@ -43,7 +43,7 @@ bot.on("message", async message => {
         return message.channel.send("https://www.trackyserver.com/server/noordbeek-rp-409451");
     }
     //dit is niet nodig
-    if (command === `${prefix}voorlopigstaathierniksbij`) {
+    if (command === `${prefix}joindeserver`) {
 
         var botEmbed = new discord.RichEmbed()
             .setDescription("@here U kan de server weer joinen, veel plesier!!")
