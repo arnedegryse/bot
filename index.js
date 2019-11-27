@@ -202,7 +202,7 @@ bot.on("message", async message => {
 
     if (command === `${prefix}clear`) {
 
-        if (!message.member.hasPermissions("MANAGE_MESSAGES")) return message.reply("Je hebt geen toestemming");
+
 
         if (!args[0]) return message.channel.send("Geef een aantal op.");
 
