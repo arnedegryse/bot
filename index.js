@@ -7,7 +7,7 @@ const fs = require("fs");
 
 const bot = new discord.Client();
 
-const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+const warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
 
 bot.on("ready", async () => {
 
