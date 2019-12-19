@@ -58,7 +58,7 @@ bot.on("message", async message => {
 
 
     if (command === `${prefix}warn`) {
-       
+
 
         var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
 
@@ -198,7 +198,7 @@ bot.on("message", async message => {
     }
 
 
-//clear command
+    //clear command
 
     if (command === `${prefix}clear`) {
 
@@ -236,22 +236,27 @@ bot.on("message", async message => {
 
 
 
-
-
     if (command === `${prefix}suggestie`) {
 
 
-               var suggestie = arguments.join(' '); 
-    if(!suggestie) return message.channel.send("Geen Suggestie gegeven");
+        var suggestie = arguments.join(' ');
+        if (!suggestie) return message.channel.send("Geen Suggestie gegeven");
 
-    var suggestieEmbed = new discord.RichEmbed()
-    .setTitle("Nieuw Idee")
-    .setColor("#00FF00")
-    .addField("Suggestie", suggestie)
-    .addField("Ingezonden door", messgae.author);
+        var suggestieEmbed = new discord.RichEmbed()
+            .setTitle("Nieuw Idee")
+            .setColor("#00FF00")
+            .addField("Suggestie", suggestie)
+            .addField("Ingezonden door", message.author);
 
-    var suggestieChannel = message.guild.channels.find("name", "suggestie");
-    if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
+        var suggestieChannel = message.guild.channels.find("name", "suggestie");
+        if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
+
+        suggestieChannel.send(suggesiteEmbed).then(embedMessage => {
+
+        embedMessage.react('✅'); 
+        embedMessage.react('❌');    
+
+        });
 
 
 
@@ -259,7 +264,7 @@ bot.on("message", async message => {
     }
 
 
-}); 
+});
 
 
 
