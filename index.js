@@ -252,7 +252,6 @@ bot.on("message", async message => {
         if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
 
         suggestieChannel.send(suggesiteEmbed).then(embedMessage => {
-
         embedMessage.react('✅'); 
         embedMessage.react('❌');    
 
