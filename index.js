@@ -5,9 +5,15 @@ const botConfig = require("./botconfig.json");
 
 const fs = require("fs");
 
-const bot = new discord.Client();
+const bot = new discord.Client();µ
+const { resolve } = require('path');
 
-const warns = JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
+function requireJson (path) {
+  return JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
+};
+
+
+
 
 bot.on("ready", async () => {
 
