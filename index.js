@@ -78,15 +78,12 @@ bot.on("message", async message => {
             .addField("Reden", reason);
 
 
-
-        return message.channel.send("Speler Suc6vol gewarned")
-
-        var warnChannel = message.guild.channels.find("name", "discord-kicks");
-        if (banChannel) return message.guild.send("kan kanaal niet vinden");
+        var warnChannel = message.guild.channels.find(x => x.name === "warns");
+        if (!warnChannel) return message.guild.send("kan kanaal niet vinden");
 
         message.guild.member(warnUser).warn(reason);
 
-        warnChannel.send(warn);
+        warnChannel.send(warnEmbed);
 
     }
 
