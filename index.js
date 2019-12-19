@@ -1,5 +1,6 @@
 const discord = require("discord.js");
 const botConfig = require("./botconfig.json");
+const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 
 const fs = require("fs");
@@ -49,7 +50,6 @@ bot.on("message", async message => {
 
     //WARN COMMAND
 
-    const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
     if (command === `${prefix}warn`) {
        
 
