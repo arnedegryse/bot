@@ -49,9 +49,9 @@ bot.on("message", async message => {
 
     //WARN COMMAND
 
-
+    const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
     if (command === `${prefix}warn`) {
-        const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+       
 
         if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Je hebt geen Perms!");
         var user = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
@@ -79,7 +79,7 @@ bot.on("message", async message => {
             .setColor("#ff1100")
             .addField("warned gebruiker", user)
             .addField("Gewarnd door", message.author)
-            .addField("Aantal warns")
+            .addField("Aantal warns", warns)
             .addField("Reden", reason);
 
 
