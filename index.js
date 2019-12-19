@@ -6,7 +6,7 @@ const botConfig = require("./botconfig.json");
 const fs = require("fs");
 
 const bot = new discord.Client();
-const { resolve } = require('path');
+const {warns} = require('path');
 
 function requireJson (path) {
   return JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
