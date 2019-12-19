@@ -113,7 +113,7 @@ bot.on("message", async message => {
 
     if (command === `${prefix}ticket`) {
 
-        const categoryId = "647161895127875595";
+        const categoryId = "657207551569428490";
 
         var userName = message.author.username;
 
@@ -246,7 +246,7 @@ bot.on("message", async message => {
         const channel = member.guild.channels.find(x => x.name === "❕join-channel");
         if(!channel) return;
 
-        channel.send(`Welkom bij de server! ${member}`);
+        channel.send(`Welkom bij de server!! ${member}`);
 
     });
 
