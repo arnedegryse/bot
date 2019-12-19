@@ -52,15 +52,15 @@ bot.on("message", async message => {
 
     if (command === `${prefix}warn`) {
 
+        if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Je hebt geen Perms!");
+        var user = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
 
-        var warnUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
-
-        if (!warnUser) return message.channel.send("gebruiker is niet gevonden");
+        if (!user) return message.channel.send("gebruiker is niet gevonden");
+        if (user.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet warnen");
 
         var reason = arguments.join(" ").slice(22);
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
 
-        if (!warnUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet warnen");
+        if (!reason) return message.channel.send("Je moet een reden opgeven!");
 
 
         var warnEmbed = new discord.RichEmbed()
@@ -73,8 +73,6 @@ bot.on("message", async message => {
 
         var warnChannel = message.guild.channels.find(x => x.name === "warns");
         if (!warnChannel) return message.guild.send("kan kanaal niet vinden");
-
-        message.guild.member(warnUser).warn(reason);
 
         warnChannel.send(warnEmbed);
 
@@ -244,7 +242,7 @@ bot.on("message", async message => {
         member.addRole(role);
 
         const channel = member.guild.channels.find(x => x.name === "❕join-channel");
-        if(!channel) return;
+        if (!channel) return;
 
         channel.send(`Welkom bij de server!! ${member}`);
 
