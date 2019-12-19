@@ -31,26 +31,19 @@ bot.on("message", async message => {
 
     var arguments = messageArrey.slice(1);
 
-    //HALLO COMMAND
 
 
-    if (command === `${prefix}hallo`) {
 
-        return message.channel.send("hallo");
-    }
-    if (command === `${prefix}serverinfo`) {
 
-        return message.channel.send("https://www.trackyserver.com/server/noordbeek-rp-409451");
-    }
-    //dit is niet nodig
+
+    //COMMANDS
+
+
+
+    //Joindeserver
     if (command === `${prefix}joindeserver`) {
 
-        var botEmbed = new discord.RichEmbed()
-            .setDescription("@here U kan de server weer joinen, veel plesier!!")
-            .setColor("#ff1100")
-
-
-        return message.channel.send(botEmbed);
+        return message.channel.send("@here , Je kan de server weer joinen, veel speelplesier!");
     }
 
 
@@ -87,20 +80,7 @@ bot.on("message", async message => {
 
     }
 
-
-
-
-    //dit wel xd
-
-
-    //DEZE COMMEND WORD IN ONDERHOUD GEZET!
-
-
-
-
-    //ONDERHOUD
     //BAN COMMAND 
-
 
     if (command === `${prefix}ban`) {
 
@@ -128,7 +108,6 @@ bot.on("message", async message => {
         banChannel.send(ban);
 
     }
-
 
     //TICKET SYSTEEM
 
@@ -231,7 +210,7 @@ bot.on("message", async message => {
     }
 
 
-
+    //Suggestie command
 
     if (command === `${prefix}suggestie`) {
 
@@ -244,20 +223,44 @@ bot.on("message", async message => {
             .setColor("#00FF00")
             .addField("Suggestie", suggestie)
             .addField("Ingezonden door", message.author);
-          
+
         var suggestieChannel = message.guild.channels.find(x => x.name === "suggestie");
         if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
 
         suggestieChannel.send(suggestieEmbed).then(embedMessage => {
-        embedMessage.react('✅'); 
-        embedMessage.react('❌');    
+            embedMessage.react('✅');
+            embedMessage.react('❌');
 
         });
 
-
-
-
     }
+    //RANGALSJEJOINT
+
+    bot.on("guildMemberAdd", member => {
+        var role = member.guild.roles.find(x => x.name === "member");
+
+        if (!role) return;
+
+        member.addRole(role);
+
+        const channel = member.guild.channels.find(x => x.name === "❕join-channel");
+        if(!channel) return;
+
+        channel.send(`Welkom bij de server! ${member}`);
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });
