@@ -5,7 +5,7 @@ const botConfig = require("./botconfig.json");
 
 const fs = require("fs");
 
-const bot = new discord.Client();µ
+const bot = new discord.Client();
 const { resolve } = require('path');
 
 function requireJson (path) {
