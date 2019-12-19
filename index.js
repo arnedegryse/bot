@@ -247,8 +247,8 @@ bot.on("message", async message => {
             .setColor("#00FF00")
             .addField("Suggestie", suggestie)
             .addField("Ingezonden door", message.author);
-
-        var suggestieChannel = message.guild.channels.find("name", "suggestie");
+          
+        var suggestieChannel = message.guild.channels.find(x => x.name === "name");
         if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
 
         suggestieChannel.send(suggesiteEmbed).then(embedMessage => {
