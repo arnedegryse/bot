@@ -12,7 +12,7 @@ bot.on("ready", async () => {
 
     console.log(`${bot.user.username} is online!`)
 
-    bot.user.setActivity("Noordbeek rp", { type: "PLAYING" });
+    bot.user.setActivity("FiveM", { type: "PLAYING" });
 
 });
 
@@ -230,6 +230,31 @@ bot.on("message", async message => {
         } else {
             return message.channel.send("Geef een aantal op.");
         }
+
+    }
+
+
+
+
+
+
+    if (command === `${prefix}suggestie`) {
+
+
+               var suggestie = arguments.join(' '); 
+    if(!suggestie) return message.channel.send("Geen Suggestie gegeven");
+
+    var suggestieEmbed = new discord.RichEmbed()
+    .setTitle("Nieuw Idee")
+    .setColor("#00FF00")
+    .addField("Suggestie", suggestie)
+    .addField("Ingezonden door", messgae.author);
+
+    var suggestieChannel = message.guild.channels.find("name", "suggestie");
+    if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
+
+
+
 
     }
 
