@@ -51,6 +51,7 @@ bot.on("message", async message => {
 
 
     if (command === `${prefix}warn`) {
+        const warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
         if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Je hebt geen Perms!");
         var user = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
@@ -62,12 +63,23 @@ bot.on("message", async message => {
 
         if (!reason) return message.channel.send("Je moet een reden opgeven!");
 
+        if (!warns[user.id]) warns[user.id] = {
+            warns: 0
+        };
+
+        warns[user.id].warns++;
+
+        fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
+            if (err) console.log(err);
+
+        });
 
         var warnEmbed = new discord.RichEmbed()
             .setDescription("warn")
             .setColor("#ff1100")
             .addField("warned gebruiker", user)
             .addField("Gewarnd door", message.author)
+            .addField("Aantal warns")
             .addField("Reden", reason);
 
 
@@ -75,6 +87,7 @@ bot.on("message", async message => {
         if (!warnChannel) return message.guild.send("kan kanaal niet vinden");
 
         warnChannel.send(warnEmbed);
+
 
     }
 
