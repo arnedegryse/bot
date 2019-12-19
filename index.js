@@ -6,11 +6,7 @@ const botConfig = require("./botconfig.json");
 const fs = require("fs");
 
 const bot = new discord.Client();
-const {warns} = require('path');
 
-function requireJson (path) {
-  return JSON.parse(fs.readFileSync('./warnings.json', 'utf8'));
-};
 
 
 
@@ -69,23 +65,13 @@ bot.on("message", async message => {
 
         if (!reason) return message.channel.send("Je moet een reden opgeven!");
 
-        if (!warns[user.id]) warns[user.id] = {
-            warns: 0
-        };
-
-        warns[user.id].warns++;
-
-        fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
-            if (err) console.log(err);
-
-        });
+        
 
         var warnEmbed = new discord.RichEmbed()
             .setDescription("warn")
             .setColor("#ff1100")
             .addField("warned gebruiker", user)
             .addField("Gewarnd door", message.author)
-            .addField("Aantal warns", warns)
             .addField("Reden", reason);
 
 
