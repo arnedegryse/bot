@@ -66,7 +66,7 @@ bot.on("message", async message => {
         var warnEmbed = new discord.RichEmbed()
             .setDescription("warn")
             .setColor("#ff1100")
-            .addField("warned gebruiker", warnUser)
+            .addField("warned gebruiker", user)
             .addField("Gewarnd door", message.author)
             .addField("Reden", reason);
 
