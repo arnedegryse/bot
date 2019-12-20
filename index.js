@@ -253,6 +253,13 @@ bot.on("message", async message => {
 
     });
 
+    //Muziek bot 
+
+    if (command === `${prefix}play`) {
+
+
+
+        };
 
 
 

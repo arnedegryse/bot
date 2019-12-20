@@ -10,7 +10,10 @@
   "author": "Arne Degryse",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "ffmpeg": "0.0.4",
+    "opusscript": "0.0.7",
+    "ytdl-core": "^1.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
