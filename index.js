@@ -48,7 +48,11 @@ bot.on("message", async message => {
 
         return message.channel.send("@here , Je kan de server weer joinen, veel speelplezier!");
     }
+    
+    if (command === `${prefix}ip`) {
 
+        return message.channel.send("**88.214.57.195:30100**");
+    }
 
     //WARN COMMAND
 
