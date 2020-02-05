@@ -51,7 +51,7 @@ bot.on("message", async message => {
     
     if (command === `${prefix}ip`) {
 
-        return message.channel.send("**88.214.57.195:30100**");
+        return message.channel.send("**94.130.49.249:30508**");
     }
 
     //WARN COMMAND
