@@ -15,7 +15,7 @@ bot.on("ready", async () => {
 
     console.log(`${bot.user.username} is online!`)
 
-    bot.user.setActivity("FiveM", { type: "PLAYING" });
+    bot.user.setActivity("discord.hollandroleplay.nl", { type: "WATCHING" });
 
 });
 
