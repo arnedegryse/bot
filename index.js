@@ -44,7 +44,7 @@ bot.on("message", async message => {
 
 
     //Joindeserver
-    if (command === `${prefix}joindeserver`) {
+    if (command === `${prefix}joinh`) {
          return message.channel.send("@here , Je kan de server weer joinen, veel speelplezier!");
     }
     
