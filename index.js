@@ -45,9 +45,7 @@ bot.on("message", async message => {
 
     //Joindeserver
     if (command === `${prefix}joindeserver`) {
-          if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Je hebt geen Perms om dit te doen!");
-    } else { 
-        return message.channel.send("@here , Je kan de server weer joinen, veel speelplezier!");
+         return message.channel.send("@here , Je kan de server weer joinen, veel speelplezier!");
     }
     
     if (command === `${prefix}ip`) {
