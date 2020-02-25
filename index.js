@@ -230,7 +230,7 @@ bot.on("message", async message => {
             .addField("Suggestie", suggestie)
             .addField("Ingezonden door", message.author);
 
-        var suggestieChannel = message.guild.channels.find(x => x.name === "❗suggestie");
+        var suggestieChannel = message.guild.channels.find(x => x.name === "suggestie");
         if (!suggestieChannel) return message.channel.send("Kanaal niet gevonden");
 
         suggestieChannel.send(suggestieEmbed).then(embedMessage => {
