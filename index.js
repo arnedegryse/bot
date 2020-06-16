@@ -225,16 +225,16 @@ bot.on("message", async message => {
     //RANGALSJEJOINT
 
     bot.on("guildMemberAdd", member => {
-        var role = member.guild.roles.find(x => x.name === "member");
+        var role = member.guild.roles.find(x => x.name === "Nieuw Lid!");
 
         if (!role) return;
 
         member.addRole(role);
 
-        const channel = member.guild.channels.find(x => x.name === "❕join-channel");
+        const channel = member.guild.channels.find(x => x.name === "📍nieuwe-leden📍");
         if (!channel) return;
 
-        channel.send(`Welkom bij de server!! ${member}`);
+        channel.send(`Welkom ${member} op de Discord Server van de Meldkamer RPR, graag zouden we hebben dat je even het kanaal verificatie kanaal doorleest! Mvg, Management Team`);
 
     });
 
