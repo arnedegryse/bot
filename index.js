@@ -279,28 +279,7 @@ bot.on("message", async message => {
 
     }
     
-            if (command === `${prefix}klacht`) {
 
-
-        var suggestie = arguments.join(' ');
-        if (!suggestie) return message.channel.send("Geen klacht opgegeven");
-
-        var suggestieEmbed = new discord.RichEmbed()
-            .setTitle("Nieuwe klacht")
-            .setColor("#00FF00")
-            .addField("Klacht", klacht)
-            .addField("Ingezonden door", message.author);
-
-        var suggestieChannel = message.guild.channels.find(x => x.name === "klachten");
-        if (!suggestieChannel) return message.channel.send("Er is een systeemfout! Contacteer Arne D.");
-
-        suggestieChannel.send(suggestieEmbed).then(embedMessage => {
-            embedMessage.react('✅');
-            embedMessage.react('❌');
-
-        });
-
-    }
 
 
     //Muziek bot 
