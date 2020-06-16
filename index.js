@@ -73,7 +73,21 @@ bot.on("message", async message => {
             createdChan.setParent(categoryId).then((settedParent) => {
 
                 settedParent.overwritePermissions(message.guild.roles.find('name', "@everyone"), { "READ_MESSAGES": false });
+              settedParent.overwritePermissions(message.guild.roles.find('name', "Team Manager"), {
 
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true,
+                    "ATTACH_FILES": true, "CONNECT": true,
+                    "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
+
+                });
+                              settedParent.overwritePermissions(message.guild.roles.find('name', "Instructeur"), {
+
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true,
+                    "ATTACH_FILES": true, "CONNECT": true,
+                    "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
+
+                });
+                
                 settedParent.overwritePermissions(message.author, {
 
                     "READ_MESSAGES": true, "SEND_MESSAGES": true,
@@ -153,6 +167,52 @@ bot.on("message", async message => {
             .addField("Ingezonden door", message.author);
 
         var suggestieChannel = message.guild.channels.find(x => x.name === "suggesties");
+        if (!suggestieChannel) return message.channel.send("Er is een systeemfout! Contacteer Arne D.");
+
+        suggestieChannel.send(suggestieEmbed).then(embedMessage => {
+            embedMessage.react('✅');
+            embedMessage.react('❌');
+
+        });
+
+    }
+    
+        if (command === `${prefix}vraag`) {
+
+
+        var suggestie = arguments.join(' ');
+        if (!suggestie) return message.channel.send("Geen vraag gesteld");
+
+        var suggestieEmbed = new discord.RichEmbed()
+            .setTitle("Nieuwe vraag")
+            .setColor("#00FF00")
+            .addField("Vraag", vraag)
+            .addField("Ingezonden door", message.author);
+
+        var suggestieChannel = message.guild.channels.find(x => x.name === "suggesties");
+        if (!suggestieChannel) return message.channel.send("Er is een systeemfout! Contacteer Arne D.");
+
+        suggestieChannel.send(suggestieEmbed).then(embedMessage => {
+            embedMessage.react('✅');
+            embedMessage.react('❌');
+
+        });
+
+    }
+    
+            if (command === `${prefix}klacht`) {
+
+
+        var suggestie = arguments.join(' ');
+        if (!suggestie) return message.channel.send("Geen klacht opgegeven");
+
+        var suggestieEmbed = new discord.RichEmbed()
+            .setTitle("Nieuwe klacht")
+            .setColor("#00FF00")
+            .addField("Klacht", klacht)
+            .addField("Ingezonden door", message.author);
+
+        var suggestieChannel = message.guild.channels.find(x => x.name === "klachten");
         if (!suggestieChannel) return message.channel.send("Er is een systeemfout! Contacteer Arne D.");
 
         suggestieChannel.send(suggestieEmbed).then(embedMessage => {
