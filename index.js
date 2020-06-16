@@ -230,7 +230,7 @@ bot.on("message", async message => {
             .addField("Suggestie", suggestie)
             .addField("Ingezonden door", message.author);
 
-        var suggestieChannel = message.guild.channels.find(x => x.name === "vragen-klachten");
+        var suggestieChannel = message.guild.channels.find(x => x.name === "test");
         if (!suggestieChannel) return message.channel.send("Er is een systeemfout! Contacteer Arne D.");
 
         suggestieChannel.send(suggestieEmbed).then(embedMessage => {
