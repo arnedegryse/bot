@@ -116,6 +116,85 @@ bot.on("message", async message => {
     }
 
 
+
+
+    if (command === `${prefix}klacht`) {
+
+        const categoryId = "722543990146072650";
+
+        var userName = message.author.username;
+
+        var userDiscriminator = message.author.discriminator;
+
+        var bool = false;
+
+        message.guild.channels.forEach((channel) => {
+
+            if (channel.name == userName.toLowerCase() + "-" + userDiscriminator) {
+
+                message.channel.send("Je hebt nog een klacht lopen");
+
+                bool = true;
+            }
+
+        });
+
+        if (bool == true) return;
+
+        var embedCreateTicket = new discord.RichEmbed()
+            .setTitle("Hoi, " + message.author.username)
+            .setFooter("Er is een appart kanaal voor je aangemaakt waarin je je klacht kan indienen");
+
+        message.channel.send(embedCreateTicket);
+
+        message.guild.createChannel(userName + "-" + userDiscriminator, "text").then((createdChan) => {
+
+            createdChan.setParent(categoryId).then((settedParent) => {
+
+                settedParent.overwritePermissions(message.guild.roles.find('name', "@everyone"), { "READ_MESSAGES": false });
+              settedParent.overwritePermissions(message.guild.roles.find('name', "Team Manager"), {
+
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true,
+                    "ATTACH_FILES": true, "CONNECT": true,
+                    "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
+
+                });
+                              settedParent.overwritePermissions(message.guild.roles.find('name', "Instructeur"), {
+
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true,
+                    "ATTACH_FILES": true, "CONNECT": true,
+                    "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
+
+                });
+                
+                settedParent.overwritePermissions(message.author, {
+
+                    "READ_MESSAGES": true, "SEND_MESSAGES": true,
+                    "ATTACH_FILES": true, "CONNECT": true,
+                    "CREATE_INSTANT_INVITE": false, "ADD_REACTIONS": true
+
+                });
+
+                var embedParent = new discord.RichEmbed()
+                    .setTitle("Hoi, " + message.author.username.toString())
+                    .setDescription("Hier kan je je klacht neerzetten");
+
+                settedParent.send(embedParent);
+
+
+            }).catch(err => {
+
+                message.channel.send("Er vindt een systeemfout plaats, contacteer Arne D.");
+            });
+
+        }).catch(err => {
+
+            message.channel.send("Er vindt een systeemfout plaats, contacteer Arne D.");
+        });
+
+    }
+
+
     //clear command
 
     if (command === `${prefix}clear`) {
