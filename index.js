@@ -37,89 +37,11 @@ bot.on("message", async message => {
 
 
 
-
-
-    //COMMANDS
-
-
-
-    //Joindeserver
-    if (command === `${prefix}joinh`) {
-         return message.channel.send("@here , Je kan de server weer joinen, veel speelplezier!");
-    }
-    
-    if (command === `${prefix}ip`) {
-
-        return message.channel.send("**94.130.49.249:30345**");
-    }
-
-    //WARN COMMAND
-
-    if (command === `${prefix}warn`) {
-       
-
-        if (!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Je hebt geen Perms!");
-        var user = message.guild.member(message.mentions.users.first() || message.guild.members.get(arguments[0]));
-
-        if (!user) return message.channel.send("gebruiker is niet gevonden");
-        if (user.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet warnen");
-
-        var reason = arguments.join(" ").slice(22);
-
-        if (!reason) return message.channel.send("Je moet een reden opgeven!");
-
-        
-
-        var warnEmbed = new discord.RichEmbed()
-            .setDescription("warn")
-            .setColor("#ff1100")
-            .addField("warned gebruiker", user)
-            .addField("Gewarnd door", message.author)
-            .addField("Reden", reason);
-
-
-        var warnChannel = message.guild.channels.find(x => x.name === "warns");
-        if (!warnChannel) return message.guild.send("kan kanaal niet vinden");
-
-        warnChannel.send(warnEmbed);
-
-
-    }
-
-    //BAN COMMAND 
-
-    if (command === `${prefix}ban`) {
-
-        var banUser = message.guild.member(message.mentions.users.first() || message.guild.members(arguments[0]));
-
-        if (banUser) return message.channel.send("gebruiker is niet gevonden");
-
-        var reason = arguments.join(" ").slice(22);
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Sorry, probeer dit niet opnieuw, je hebt geen bevoegdheid");
-
-        if (banUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Deze gebruiker kan je niet bannen");
-
-        var ban = new discord.RichEmbed()
-            .setDescription("ban")
-            .setColor("#ff1100")
-            .addField("baned gebruiker", banUser)
-            .addField("Geband door", message.author)
-            .addField("Reden", reason);
-
-        var banChannel = message.guild.channels.find("name", "discord-bans");
-        if (banChannel) return message.guild.send("kan kanaal niet vinden");
-
-        message.guild.member(banUser).ban(reason);
-
-        banChannel.send(ban);
-
-    }
-
     //TICKET SYSTEEM
 
     if (command === `${prefix}ticket`) {
 
-        const categoryId = "657207551569428490";
+        const categoryId = "722525772920651777";
 
         var userName = message.author.username;
 
@@ -142,7 +64,7 @@ bot.on("message", async message => {
 
         var embedCreateTicket = new discord.RichEmbed()
             .setTitle("Hoi, " + message.author.username)
-            .setFooter("Support kanaal word aangemaakt");
+            .setFooter("Het ticket kanaal wordt voor je aangemaakt, het Meldkamer Team zal zo snel mogelijk reageren");
 
         message.channel.send(embedCreateTicket);
 
@@ -162,19 +84,19 @@ bot.on("message", async message => {
 
                 var embedParent = new discord.RichEmbed()
                     .setTitle("Hoi, " + message.author.username.toString())
-                    .setDescription("Zet hier je bericht, het staffteam zal zodadelijk naar je kijken!!");
+                    .setDescription("Hier kan je Live je vragen stellen aan het Meldkamer Team");
 
                 settedParent.send(embedParent);
 
 
             }).catch(err => {
 
-                message.channel.send("Er is iets fout gelopen");
+                message.channel.send("Er vindt een systeemfout plaats, contacteer Arne D.");
             });
 
         }).catch(err => {
 
-            message.channel.send("Er is iets fout gelopen");
+            message.channel.send("Er vindt een systeemfout plaats, contacteer Arne D.");
         });
 
     }
@@ -258,11 +180,7 @@ bot.on("message", async message => {
 
     //Muziek bot 
 
-    if (command === `${prefix}play`) {
 
-
-
-        };
 
 
 
