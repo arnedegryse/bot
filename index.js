@@ -15,7 +15,7 @@ bot.on("ready", async () => {
 
     console.log(`${bot.user.username} is online!`)
 
-    bot.user.setActivity("Vlaardingen Roleplay", { type: "PLAYING" });
+    bot.user.setActivity("Roleplay Reality", { type: "PLAYING" });
 
 });
 
